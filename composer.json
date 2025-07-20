@@ -1,0 +1,42 @@
+{
+    "name": "makaveli/laravel-login-history",
+    "description": "Advanced Login History for Laravel",
+    "keywords": ["laravel", "framework"],
+    "type": "library",
+    "license": "MIT",
+    "require": {
+        "php": "^8.2",
+        "laravel/framework": "^10.10|^11.0|^12.0",
+        "makaveli/laravel-logger": "1.0.9"
+    },
+    "autoload": {
+        "psr-4": {
+            "LoginHistory\\": "src/",
+            "LoggerLoginHistory\\Database\\": "src/Database/"
+        }
+    },
+    "repositories": [
+        {
+            "type": "vcs",
+            "url": "https://github.com/Ma1kaveli/laravel-logger"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/Ma1kaveli/laravel-query-builder"
+        },
+        {
+            "type": "vcs",
+            "url": "https://github.com/Ma1kaveli/laravel-converter"
+        }
+    ],
+    "extra": {
+        "laravel": {
+            "dont-discover": [],
+            "providers": [
+                "LoginHistory\\Providers\\LoggerServiceProvider"
+            ]
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
