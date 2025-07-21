@@ -12,7 +12,7 @@
     "autoload": {
         "psr-4": {
             "LoginHistory\\": "src/",
-            "LoggerLoginHistory\\Database\\": "src/Database/"
+            "LoginHistory\\Database\\": "src/Database/"
         }
     },
     "repositories": [
@@ -33,7 +33,7 @@
         "laravel": {
             "dont-discover": [],
             "providers": [
-                "LoginHistory\\Providers\\LoggerServiceProvider"
+                "LoginHistory\\Providers\\LoginHistoryServiceProvider"
             ]
         }
     },
