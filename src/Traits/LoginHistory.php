@@ -24,10 +24,12 @@ trait LoginHistory {
      */
     public function writeLoginHistory(mixed $request): void
     {
-        $userLoginHistoryActions = new UserLoginHistoryActions();
-        $user = Auth::user();
+        try {
+            $userLoginHistoryActions = new UserLoginHistoryActions();
+            $user = Auth::user();
 
-        $userLoginHistoryActions->writeToHistory($user, $request);
+            $userLoginHistoryActions->writeToHistory($user, $request);
+        } catch (\Throwable $th) {}
     }
 
     /**
@@ -39,9 +41,11 @@ trait LoginHistory {
      */
     public function writeAsyncLoginHistory(mixed $request): void
     {
-        $user = Auth::user();
+        try {
+            $user = Auth::user();
 
-        JProcessLoginHistorySave::dispatch($request, $user);
+            JProcessLoginHistorySave::dispatch($request, $user);
+        } catch (\Throwable $th) {}
     }
 
     /**
