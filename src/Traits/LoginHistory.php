@@ -1,6 +1,6 @@
 <?php
 
-namespace LaravelHistory\Traits;
+namespace LoginHistory\Traits;
 
 use LoginHistory\Actions\UserLoginHistoryActions;
 use LoginHistory\DTO\UserLoginHistoryListDTO;

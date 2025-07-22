@@ -96,7 +96,7 @@ return [
 Добавьте трейт в ваш контроллер или класс, где обрабатывается авторизация:
 
 ```php
-use LaravelHistory\Traits\LoginHistory;
+use LoginHistory\Traits\LoginHistory;
 
 class AuthController extends Controller
 {
