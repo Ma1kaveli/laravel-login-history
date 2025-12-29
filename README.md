@@ -15,41 +15,26 @@
 
 - PHP 8.2 или выше
 - Laravel 10.10, 11.0 или 12.0
-- Пакет `makaveli/laravel-query-builder` (версия 1.0.15)
+- Пакет `makaveli/laravel-query-builder` (версия 1.1.0)
+- Пакет `makaveli/laravel-logger` (версия 1.1.0)
 
 ## Установка
 
-1. Добавьте ссылку на пакет в composer.json вашего проекта:
-   ```json
-   {
-    "repositories": [
-        {
-            "type": "vcs",
-            "url": "https://github.com/Ma1kaveli/laravel-login-history"
-        }
-    ]
-   }
-   ```
-
-2. Установите пакет через Composer:
+1. Установите пакет через Composer:
 
    ```bash
    composer require makaveli/laravel-login-history
    ```
 
-3. (Опционально) Опубликуйте файл конфигурации:
+2. (Опционально) Опубликуйте файл конфигурации:
 
    ```bash
    php artisan vendor:publish --tag=login-history-config
    ```
-   или
-   ```bash
-   php artisan vendor:publish --provider="LoginHistory\Providers\LoginHistoryServiceProvider" --tag="login-history-config"
-   ```
 
    Файл конфигурации будет скопирован в `config/login-history.php`, где вы сможете настроить параметры, такие как модель пользователя или поддержку организаций.
 
-4. Выполните миграции пакета:
+3. Выполните миграции пакета:
 
    ```bash
    php artisan migrate:login-history
@@ -64,6 +49,7 @@
 - **`user_model`**: Путь к модели пользователя (по умолчанию: `App\Models\User::class`).
 - **`search_filter_fields`**: Поля модели пользователя по которым будет происходить поиск через параметр `search` (по умолчанию: `['name', 'patronymic', 'family_name', 'phone', 'email']`).
 - **`with_role`**: Указывает, содержит ли модель пользователя связь роль (по умолчанию: `true`. Также нужно и для фильтрации по организации).
+- **`advanced_filters`**: Функция в которой можно прописать кастомные фильтра. В функцию попадает @var \LoginHistory\Filters\UserLoginHistoryFilters $this
 - **`with_organization`**: Указывает, содержит ли модель роли поле `organization_id` (по умолчанию: `true`).
 - **`user_login_history`**: Количество тестовых записей истории авторизаций для создания через сиды (по умолчанию: `100`).
 - **`transformers`**: Массив функций для преобразования параметров фильтрации при запросе списка.
@@ -74,8 +60,11 @@
 ```php
 return [
     'user_model' => App\Modules\Base\Models\User::class,
-    'with_role' => true,
     'search_filter_fields' => ['name', 'patronymic', 'family_name', 'phone', 'email'],
+    'with_role' => true,
+    'advanced_filters' => function (\LoginHistory\Filters\UserLoginHistoryFilters $self) {
+        $self->applyInteger('user_id');
+    },
     'with_organization' => true,
     'user_login_history' => env('USER_LOGIN_HISTORY_FACTORY', 100),
     'transformers' => [

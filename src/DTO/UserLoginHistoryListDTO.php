@@ -2,8 +2,8 @@
 
 namespace LoginHistory\DTO;
 
+use Core\DTO\ListDTO;
 use Illuminate\Http\Request;
-use QueryBuilder\DTO\ListDTO;
 
 class UserLoginHistoryListDTO {
     public function __construct(

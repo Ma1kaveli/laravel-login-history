@@ -17,11 +17,13 @@ class UserLoginHistoryFilters extends BaseQueryBuilder
     public function list(): LengthAwarePaginator
     {
         $this->with('user');
+
         $this->applyWhereHasLikeArray(
             'user',
             config('login-history.search_filter_fields') ?? [],
             'search'
         );
+
         $this->applyInteger('user_id');
 
         if (config('login-history.with_role')) {
@@ -35,9 +37,16 @@ class UserLoginHistoryFilters extends BaseQueryBuilder
             );
         }
 
+        $callback = config('login-history.advanced_filters');
+
+        if (is_callable($callback)) {
+            $callback($this);
+        }
+
         $this->applyDateStartEnd('created_at', 'date_from', 'date_to');
 
         $this->sortBy(['created_at'], 'id');
+
         $this->sortByRelationField(
             new AvailableSorts([
                 new AvailableSort(
