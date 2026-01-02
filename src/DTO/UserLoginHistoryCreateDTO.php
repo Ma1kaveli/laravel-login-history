@@ -28,4 +28,16 @@ class UserLoginHistoryCreateDTO {
             fingerprint: json_encode($request->get('fingerprint', [])),
         );
     }
+
+    /**
+     * Summary of toArray
+     *
+     * @return array{fingerprint: string, user_id: int}
+     */
+    public function toArray(): array {
+        return [
+            'user_id' => $this->userId,
+            'fingerprint' => $this->fingerprint
+        ];
+    }
 }

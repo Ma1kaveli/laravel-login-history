@@ -15,8 +15,8 @@
 
 - PHP 8.2 или выше
 - Laravel 10.10, 11.0 или 12.0
-- Пакет `makaveli/laravel-query-builder` (версия 1.1.0)
-- Пакет `makaveli/laravel-logger` (версия 1.1.0)
+- Пакет `makaveli/laravel-query-builder` (версия 1.1.1)
+- Пакет `makaveli/laravel-logger` (версия 1.1.1)
 
 ## Установка
 

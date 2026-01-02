@@ -2,9 +2,14 @@
 
 namespace LoginHistory\Resources;
 
-use Illuminate\Http\Resources\Json\JsonResource;
+use Core\Resources\BaseResource;
 
-class UserLoginHistoryResource extends JsonResource {
+class UserLoginHistoryResource extends BaseResource {
+    protected function getAdditionalData()
+    {
+        return [];
+    }
+    
     public function toArray($request)
     {
         return [

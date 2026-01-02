@@ -30,7 +30,7 @@ class UserLoginHistoryActions {
     {
         try {
             $this->userLoginHistoryService->create(
-                UserLoginHistoryCreateDTO::fromRequest($user, $request)
+                UserLoginHistoryCreateDTO::fromRequest($user, $request)->toArray()
             );
         } catch (\Exception $e) {
             LaravelLog::error($e);
